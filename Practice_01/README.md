@@ -44,8 +44,7 @@
    ```bash
    pip install notebook
 2. Откройте ноутбук:
-   ```bash
-   jupyter notebook Practice_1.ipynb
+   `Practice_1_var21.ipynb`
 4. Выполните ячейки по порядку: сначала все ячейки задач 1-12, чтобы инициализровать их работу в меню, затем ячейку с меню.
 
 ---
