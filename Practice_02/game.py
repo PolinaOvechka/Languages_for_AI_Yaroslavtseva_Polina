@@ -8,6 +8,7 @@ from enemies import Zombie, zombie_turn
 from objects import Medkit, Supplies, Trap, Armor
 from territory import Road, Forest, Radiation
 from game_text import messages
+from instance_counter import InstanceCounter
 
 
 class Game:
@@ -108,6 +109,7 @@ class Game:
             "turns": self.turn_count,
             "zombies_left": zombies_left,
             "zombies_killed": self.total_zombies - zombies_left,
+            "zombie_instances": InstanceCounter.instances,
             "survivors": len(self.base.units),
             "resources": self.base.resources,
             "base_health": self.base.health,
@@ -152,6 +154,55 @@ class Game:
 
         for x, y in available_cells[:count]:
             self.field.add_object(x, y, Zombie())
+
+
+    def set_zombie_count(self, count):
+        'изменение количества зомби'
+
+        if count > self.field.max_objects:
+            print("Ошибка! Слишком большое количество зомби.")
+            return False
+
+        # Текущее количество зомби
+        current_count = self.get_statistics()["zombies_left"]
+
+        # Если нужно добавить зомби
+        if count > current_count:
+            difference = count - current_count
+            self.spawn_zombies(difference)
+
+        # Если нужно убрать зомби
+        elif count < current_count:
+            difference = current_count - count
+
+            for y in range(self.field.height):
+                for x in range(self.field.width):
+                    obj = self.field.grid[y][x]
+
+                    if isinstance(obj, Zombie):
+                        self.field.remove_object(x, y)
+                        difference -= 1
+
+                        if difference == 0:
+                            break
+
+                if difference == 0:
+                    break
+
+        # Пересчитываем количество зомби
+        new_count = self.get_statistics()["zombies_left"]
+
+        # Сохраняем статистику уничтоженных зомби
+        killed = self.total_zombies - current_count
+        self.total_zombies = killed + new_count
+
+        print("Теперь на карте зомби:", new_count)
+
+        if new_count != count:
+            print("Не удалось разместить всех зомби: недостаточно свободных клеток.")
+
+        return new_count == count
+            
 
 
     def check_death(self, unit):

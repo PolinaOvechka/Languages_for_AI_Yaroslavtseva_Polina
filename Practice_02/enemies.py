@@ -1,6 +1,7 @@
 from units import Unit
 import random
 from game_text import messages
+from instance_counter import InstanceCounter
 
 
 class Enemy(Unit):
@@ -13,6 +14,7 @@ class Zombie(Enemy):
     'зомби'
     def __init__(self, x=0, y=0):
         super().__init__("Зомби", 70, 0, 15, x, y)
+        self.counter = InstanceCounter()
         self.symbol = "З"
         self.detection_radius = 7
 

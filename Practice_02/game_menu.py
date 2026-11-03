@@ -1,7 +1,7 @@
 from units import Tracker, Stalker, Engineer
 from game_text import messages
 import os
-
+from instance_counter import save_count, load_count
 
 class GameMenu:
     def __init__(self, game):
@@ -62,6 +62,7 @@ class GameMenu:
             f"Ресурсы: {stats['resources']} | "
             f"Исследовано: {stats['explored_percent']}%"
         )
+        print("Экземпляров зомби:", stats["zombie_instances"])
 
 
 # ИНТРО И ПРАВИЛА
@@ -174,6 +175,8 @@ class GameMenu:
             print("1 - Управление убежищем")
             print("2 - Управление юнитами")
             print("3 - Обозначения")
+            print("4 - Сохранить количество экземпляров зомби")
+            print("5 - Загрузить количество экземпляров зомби")
             print("0 - Выход")
 
             choice = input("Выбери действие: ")
@@ -186,6 +189,16 @@ class GameMenu:
 
             elif choice == "3":
                 self.show_legend()
+
+            elif choice == "4":
+                count = self.game.get_statistics()["zombies_left"]
+                save_count(count)
+
+            elif choice == "5":
+                count = load_count()
+
+                if count is not None:
+                    self.game.set_zombie_count(count)
 
             elif choice == "0":
                 print("Игра завершена.")
