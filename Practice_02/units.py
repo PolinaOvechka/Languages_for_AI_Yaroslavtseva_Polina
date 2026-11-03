@@ -1,5 +1,4 @@
-
-from game_text import GameText
+from game_text import messages
 
 class Unit:
     def __init__(self, name, health, armor, attack, x=0, y=0):
@@ -38,9 +37,12 @@ class Unit:
     def attack_target(self, target, bonus=0):
         ' Атака другого юнита'
         damage = target.take_damage(self.attack + bonus)
-        kind = "danger" if self.base is None else "attack"
+        if self.base is None:
+            kind = "danger"
+        else:
+            kind = "attack"
 
-        GameText.event(
+        messages.event(
             f"{self.name} атакует {target.name}! Урон: {damage}",
             kind
         )
@@ -136,7 +138,7 @@ class Medic(Support):
         target.health = min(target.max_health, target.health + 10)
 
         restored = target.health - old_health
-        GameText.event(
+        messages.event(
             f"{self.name} лечит {target.name}. "
             f"Восстановлено здоровья: {restored}",
             "success"
@@ -172,7 +174,7 @@ class Engineer(Support):
         base.health = min(500, base.health + 10)
 
         restored = base.health - old_health
-        GameText.event(
+        messages.event(
             f"Инженер ремонтирует убежище! "
             f"Восстановлено прочности: {restored}",
             "success"

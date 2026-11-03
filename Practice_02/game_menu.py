@@ -1,6 +1,5 @@
-
 from units import Tracker, Stalker, Engineer
-from game_text import GameText
+from game_text import messages
 import os
 
 
@@ -18,14 +17,22 @@ class GameMenu:
 
     def get_coordinates(self):
         'ввод координат'
+        coordinates = input("Введи координаты X Y через пробел: ")
+
+        coordinates = coordinates.split()
+
+        if len(coordinates) != 2:
+            print("Ошибка! Нужно ввести две координаты.")
+            return None
+
         try:
-            x, y = map(
-                int,
-                input("Введи координаты X Y через пробел: ").split()
-            )
+            x = int(coordinates[0])
+            y = int(coordinates[1])
+
             return x, y
+
         except ValueError:
-            print("Ошибка! Введи две координаты через пробел.")
+            print("Ошибка! Координаты должны быть числами.")
             return None
 
     def show_game(self):
@@ -107,20 +114,20 @@ class GameMenu:
         print("======================================")
 
         if result == "victory":
-            GameText.event("              ПОБЕДА", "success")
+            messages.event("              ПОБЕДА", "success")
             print()
             print("Последний заражённый повержен.")
             print("Пустошь впервые за долгое время молчит.")
             print("Убежище выстояло.")
 
         elif result == "base_destroyed":
-            GameText.event("             ПОРАЖЕНИЕ", "danger")
+            messages.event("             ПОРАЖЕНИЕ", "danger")
             print()
             print("Стены убежища не выдержали натиска.")
             print("Последний безопасный огонь погас.")
 
         elif result == "squad_destroyed":
-            GameText.event("             ПОРАЖЕНИЕ", "danger")
+            messages.event("             ПОРАЖЕНИЕ", "danger")
             print()
             print("Последний выживший пал.")
             print("Защищать убежище больше некому.")
@@ -139,12 +146,12 @@ class GameMenu:
         print("======================================")
 
         if result == "victory":
-            GameText.event(
+            messages.event(
                 "Пока горит свет в убежище — надежда жива.",
                 "success"
             )
         else:
-            GameText.event(
+            messages.event(
                 "Но даже в пустоши история ещё не закончена.",
                 "warning"
             )
@@ -298,6 +305,7 @@ class GameMenu:
                 i, "-", unit.name,
                 "| HP:", str(unit.health) + "/" + str(unit.max_health),
                 "| Броня:", unit.armor,
+                "| Снижение урона:", unit.damage_reduction,
                 "| Урон:", unit.attack,
                 "| Координаты:", unit.x, unit.y
             )

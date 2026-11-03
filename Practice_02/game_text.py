@@ -4,9 +4,9 @@ import random
 
 class GameText:
     # Цвета сообщений
-    RESET = "\033[0m"
+    reset = "\033[0m"
 
-    COLORS = {
+    colors = {
         "info": "\033[97m",
         "success": "\033[92m",
         "danger": "\033[91m",
@@ -17,7 +17,7 @@ class GameText:
     }
 
     # Реплики персонажей
-    PHRASES = {
+    character_phrases = {
         "Assault": {
             "move": [
                 "Держим строй.",
@@ -97,19 +97,24 @@ class GameText:
         }
     }
 
-    @classmethod
-    def event(cls, message, kind="info"):
+    def event(self, message, kind="info"):
         'вывод цветного сообщения'
-        color = cls.COLORS.get(kind, cls.COLORS["info"])
-        print(color + str(message) + cls.RESET)
+        color = self.colors.get(kind, self.colors["info"])
+        print(color + str(message) + self.reset)
 
-    @classmethod
-    def character(cls, unit, action):
+    def character(self, unit, action):
         'случайная реплика персонажа'
         unit_type = type(unit).__name__
-        phrases = cls.PHRASES.get(unit_type, {}).get(action, [])
+
+        phrases = self.character_phrases.get(unit_type, {})
+        phrases = phrases.get(action, [])
 
         # Реплика появляется с вероятностью 45%
-        if phrases and random.random() < 0.45:
-            phrase = random.choice(phrases)
-            cls.event(f'{unit.name}: «{phrase}»', "dialogue")
+        if phrases:
+            chance = random.random()
+
+            if chance < 0.45:
+                phrase = random.choice(phrases)
+                self.event(f'{unit.name}: «{phrase}»', "dialogue")
+
+messages = GameText()

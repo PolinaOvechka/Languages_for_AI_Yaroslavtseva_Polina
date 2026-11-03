@@ -294,7 +294,10 @@ class GameField:
             left = spaces // 2
             right = spaces - left
 
-            style = bold if is_bold else ""
+            if is_bold:
+                style = bold
+            else:
+                style = ""
 
             return (
                 " " * left

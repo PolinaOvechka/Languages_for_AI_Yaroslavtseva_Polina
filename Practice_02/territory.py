@@ -1,6 +1,5 @@
-
 from units import Stalker
-from game_text import GameText
+from game_text import messages
 
 class Territory:
     def __init__(self, name, symbol):
@@ -31,14 +30,14 @@ class Forest(Territory):
         if not getattr(unit, "forest_bonus", False):
             unit.armor += 10
             unit.forest_bonus = True
-            GameText.event(f"{unit.name} получает +10 временной брони в лесу!", "success")
+            messages.event(f"{unit.name} получает +10 временной брони в лесу!", "success")
 
     # Удаление бонуса при выходе
     def on_leave(self, unit):
         if getattr(unit, "forest_bonus", False):
             unit.armor -= 10
             unit.forest_bonus = False
-            GameText.event(
+            messages.event(
                 f"{unit.name} покидает лес. Бонус брони -10.", "warning")
 
 
@@ -49,11 +48,14 @@ class Radiation(Territory):
 
     def on_enter(self, unit):
         # сталкеры получают меньше урона от радиации
-        damage = 5 if isinstance(unit, Stalker) else 10
+        if isinstance(unit, Stalker):
+            damage = 5
+        else:
+            damage = 10
 
         unit.health = max(0, unit.health - damage)
 
-        GameText.event(
+        messages.event(
             f"{unit.name} получает {damage} урона от радиации!",
             "danger"
         )

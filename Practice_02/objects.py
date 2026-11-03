@@ -1,4 +1,4 @@
-from game_text import GameText
+from game_text import messages
 
 class NeutralObject:
     'класс нейтральных объектов'
@@ -22,7 +22,7 @@ class Medkit(NeutralObject):
         unit.health = min(unit.max_health, unit.health + 30)
 
         restored = unit.health - old_health
-        GameText.event(f"{unit.name} восстанавливает {restored} HP!", "success")
+        messages.event(f"{unit.name} восстанавливает {restored} HP!", "success")
 
 
 
@@ -32,7 +32,7 @@ class Supplies(NeutralObject):
         super().__init__("Припасы", "$")
 
     def interact(self, unit):
-        GameText.event(f"{unit.name} нашёл 20 ресурсов!", "success")
+        messages.event(f"{unit.name} нашёл 20 ресурсов!", "success")
         return 20
 
 
@@ -43,7 +43,7 @@ class Trap(NeutralObject):
 
     def interact(self, unit):
         unit.health = max(0, unit.health - 20)
-        GameText.event(f"{unit.name} попал в ловушку! -20 HP", "danger")
+        messages.event(f"{unit.name} попал в ловушку! -20 HP", "danger")
 
 
 class Armor(NeutralObject):
@@ -53,4 +53,4 @@ class Armor(NeutralObject):
 
     def interact(self, unit):
         unit.armor += 15
-        GameText.event(f"{unit.name} получает +15 брони!", "success")
+        messages.event(f"{unit.name} получает +15 брони!", "success")

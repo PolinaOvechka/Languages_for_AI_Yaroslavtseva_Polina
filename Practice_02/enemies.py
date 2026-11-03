@@ -1,6 +1,6 @@
 from units import Unit
 import random
-from game_text import GameText
+from game_text import messages
 
 
 class Enemy(Unit):
@@ -28,7 +28,15 @@ class Zombie(Enemy):
             if unit.health > 0:
                 targets.append(unit)
 
-        nearest = min(targets, key=self.distance_to)
+        nearest = targets[0]
+        min_distance = self.distance_to(nearest)
+
+        for target in targets:
+            distance = self.distance_to(target)
+
+            if distance < min_distance:
+                min_distance = distance
+                nearest = target
 
         if self.distance_to(nearest) <= self.detection_radius:
             return nearest
@@ -111,10 +119,14 @@ class Zombie(Enemy):
         survivors = self.find_survivors(field)
 
         if survivors:
-            target = min(survivors, key=lambda unit: unit.health)
+            target = survivors[0]
+
+            for unit in survivors:
+                if unit.health < target.health:
+                    target = unit
 
             print()
-            GameText.event("Из темноты вырывается заражённый!", "warning")
+            messages.event("Из темноты вырывается заражённый!", "warning")
             self.attack_target(target)
 
             if target.health <= 0:
@@ -129,8 +141,8 @@ class Zombie(Enemy):
             base.health = max(0, base.health - self.attack)
 
             print()
-            GameText.event("Зомби вцепился в укрепления убежища!", "danger")
-            GameText.event(f"Прочность убежища: {base.health}/500", "danger")
+            messages.event("Зомби вцепился в укрепления убежища!", "danger")
+            messages.event(f"Прочность убежища: {base.health}/500", "danger")
             return True
 
         return False

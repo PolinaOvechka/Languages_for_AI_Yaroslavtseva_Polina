@@ -7,7 +7,7 @@ from units import Assault, Sniper, Tracker, Stalker, Medic, Engineer
 from enemies import Zombie, zombie_turn
 from objects import Medkit, Supplies, Trap, Armor
 from territory import Road, Forest, Radiation
-from game_text import GameText
+from game_text import messages
 
 
 class Game:
@@ -81,7 +81,10 @@ class Game:
 
         for unit in self.base.units:
             # У разведчиков обзор больше
-            radius = 4 if isinstance(unit, (Tracker, Stalker)) else 2
+            if isinstance(unit, (Tracker, Stalker)):
+                radius = 4 
+            else: 
+                radius =2
             visible.update(self.reveal_area(unit, radius))
 
         return visible
@@ -177,7 +180,10 @@ class Game:
             return False
 
         steps = self.distance(unit.x, unit.y, x, y)
-        max_steps = 2 if isinstance(unit, Tracker) else 1
+        if isinstance(unit, Tracker):
+            max_steps = 2
+        else:
+            max_steps = 1
 
         if steps < 1 or steps > max_steps:
             print("Недопустимая дальность перемещения!")
@@ -224,13 +230,13 @@ class Game:
             return False
 
         print()
-        GameText.event(
+        messages.event(
             f"{unit.name} переместился на клетку ({x}, {y}).",
             "info"
         )
 
         self.describe_surroundings(unit)
-        GameText.character(unit, "move")
+        messages.character(unit, "move")
 
         return True
 
@@ -248,14 +254,17 @@ class Game:
             print("На выбранной клетке нет зомби!")
             return False
 
-        attack_range = 3 if isinstance(unit, Sniper) else 1
+        if isinstance(unit, Sniper):
+            attack_range = 3
+        else:
+            attack_range = 1
 
         if self.distance(unit.x, unit.y, x, y) > attack_range:
             print("Противник слишком далеко!")
             return False
 
         unit.attack_target(target)
-        GameText.character(unit, "attack")
+        messages.character(unit, "attack")
         self.check_death(target)
         return True
 
@@ -265,7 +274,7 @@ class Game:
         # Сканирование предметов Разведчиком
         if isinstance(unit, Tracker):
             found_items = unit.use_ability(field=self.field)
-            GameText.character(unit, "ability")
+            messages.character(unit, "ability")
 
             self.identified_items.update(found_items)
             return True
@@ -274,7 +283,7 @@ class Game:
         if isinstance(unit, Stalker):
             result = unit.use_ability(field=self.field)
             if result:
-                GameText.character(unit, "ability")
+                messages.character(unit, "ability")
 
             if result:
                 self.reveal_area(unit, 6)
@@ -290,7 +299,7 @@ class Game:
 
             result = unit.use_ability(target=self.base)
             if result:
-                GameText.character(unit, "ability")
+                messages.character(unit, "ability")
 
             return result
 
@@ -315,7 +324,10 @@ class Game:
                 print("Атаковать можно только зомби!")
                 return False
 
-            attack_range = 3 if isinstance(unit, Sniper) else 1
+            if isinstance(unit, Sniper):
+                attack_range = 3 
+            else:
+                attack_range = 1
 
             if self.distance(unit.x, unit.y, x, y) > attack_range:
                 print("Противник слишком далеко!")
@@ -330,7 +342,7 @@ class Game:
 
             result = unit.use_ability(target=target)
             if result:
-                GameText.character(unit, "attack")
+                messages.character(unit, "attack")
 
             if result:
                 self.base.resources -= ability_cost
@@ -351,7 +363,7 @@ class Game:
 
             result = unit.use_ability(target=target)
             if result:
-                GameText.character(unit, "ability")
+                messages.character(unit, "ability")
 
             return result
 
@@ -435,7 +447,10 @@ class Game:
     def describe_surroundings(self, unit, radius=None):
         'описания'
         if radius is None:
-            radius = 4 if isinstance(unit, (Tracker, Stalker)) else 2
+            if isinstance(unit, (Tracker, Stalker)):
+                radius = 4
+            else:
+                radius = 2
 
         territory = self.field.territory[unit.y][unit.x]
 
@@ -464,7 +479,7 @@ class Game:
                 "Ничто не нарушает тишину заброшенной дороги."
             ]
 
-        GameText.event(random.choice(descriptions), "atmosphere")
+        messages.event(random.choice(descriptions), "atmosphere")
 
         # Поиск ближайших объектов
         closest = {}
@@ -495,7 +510,7 @@ class Game:
                     if kind not in closest or dist < closest[kind][0]:
                         closest[kind] = (dist, x, y)
 
-        messages = {
+        nearby_messages = {
             "zombie": [
                 "доносится хриплый рык заражённого.",
                 "слышны тяжёлые, волочащиеся шаги.",
@@ -520,9 +535,12 @@ class Game:
                     unit.x, unit.y, x, y
                 )
 
-                message = (direction.capitalize() + " " + random.choice(messages[kind]))
-                color = "warning" if kind != "item" else "info"
-                GameText.event(message, color)
+                message = (direction.capitalize() + " " + random.choice(nearby_messages[kind]))
+                if kind != "item":
+                    color = "warning"
+                else:
+                    color = "info"
+                messages.event(message, color)
 
         if not closest:
             print("Поблизости ничего подозрительного не обнаружено.")
@@ -540,13 +558,21 @@ class Game:
                 if not self.base.units:
                     continue
 
-                # Ближайший к зомби выживший
-                unit = min(
-                    self.base.units,
-                    key=lambda u: self.distance(
-                        u.x, u.y, zombie.x, zombie.y
-                    )
+                # Поиск ближайшего к зомби выжившего
+                unit = self.base.units[0]
+
+                min_distance = self.distance(
+                    unit.x, unit.y, zombie.x, zombie.y
                 )
+
+                for survivor in self.base.units:
+                    distance = self.distance(
+                        survivor.x, survivor.y, zombie.x, zombie.y
+                    )
+
+                    if distance < min_distance:
+                        min_distance = distance
+                        unit = survivor
 
                 dist = self.distance(
                     unit.x, unit.y, zombie.x, zombie.y
