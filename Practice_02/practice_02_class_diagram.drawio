@@ -1,29 +1,26 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6">
   <diagram id="UML_practice_02" name="Диаграмма классов">
-    <mxGraphModel dx="2852" dy="1698" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1700" math="0" shadow="0">
+    <mxGraphModel dx="3169" dy="1887" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1700" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="heading" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#23435E;" value="ТЕНИ ПУСТОШЕЙ — UML-диаграмма классов" vertex="1">
-          <mxGeometry height="42" width="900" x="40" y="15" as="geometry" />
-        </mxCell>
         <mxCell id="h1" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#23435E;" value="01  Управление игровым процессом" vertex="1">
-          <mxGeometry height="35" width="400" x="40" y="75" as="geometry" />
+          <mxGeometry height="35" width="400" x="80" y="75" as="geometry" />
         </mxCell>
         <mxCell id="Game" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDECF8;strokeColor=#3275A8;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Game&lt;/b&gt;&lt;hr&gt;field: GameField&lt;br&gt;base: Base&lt;br&gt;turn_count: int&lt;br&gt;explored_cells: set&lt;hr&gt;run()&lt;br&gt;move_unit()&lt;br&gt;attack_enemy()&lt;br&gt;use_ability()&lt;br&gt;check_game_end()" vertex="1">
-          <mxGeometry height="225" width="270" x="460" y="140" as="geometry" />
+          <mxGeometry height="225" width="270" x="500" y="140" as="geometry" />
         </mxCell>
         <mxCell id="GameMenu" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF3FA;strokeColor=#53779D;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;GameMenu&lt;/b&gt;&lt;hr&gt;game: Game&lt;hr&gt;show_game()&lt;br&gt;base_menu()&lt;br&gt;unit_menu()&lt;br&gt;show_results()&lt;br&gt;run()" vertex="1">
-          <mxGeometry height="180" width="260" x="60" y="160" as="geometry" />
+          <mxGeometry height="180" width="260" x="100" y="160" as="geometry" />
         </mxCell>
         <mxCell id="GameField" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF3FA;strokeColor=#53779D;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;GameField&lt;/b&gt;&lt;hr&gt;grid: list&lt;br&gt;territory: list&lt;br&gt;items: list&lt;hr&gt;generate_territory()&lt;br&gt;move_object()&lt;br&gt;collect_item()&lt;br&gt;display()" vertex="1">
-          <mxGeometry height="195" width="260" x="870" y="150" as="geometry" />
+          <mxGeometry height="195" width="260" x="910" y="150" as="geometry" />
         </mxCell>
         <mxCell id="Base" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF3FA;strokeColor=#53779D;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Base&lt;/b&gt;&lt;hr&gt;health: int&lt;br&gt;resources: int&lt;br&gt;units: list[Unit]&lt;hr&gt;create_unit()&lt;br&gt;remove_unit()&lt;br&gt;add_resources()" vertex="1">
-          <mxGeometry height="180" width="260" x="1220" y="155" as="geometry" />
+          <mxGeometry height="180" width="260" x="1260" y="155" as="geometry" />
         </mxCell>
         <mxCell id="GameText" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1E7F5;strokeColor=#9169A1;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;GameText&lt;/b&gt;&lt;hr&gt;COLORS: dict&lt;br&gt;PHRASES: dict&lt;hr&gt;event()&lt;br&gt;character()" vertex="1">
-          <mxGeometry height="135" width="260" x="60" y="400" as="geometry" />
+          <mxGeometry height="135" width="260" x="100" y="400" as="geometry" />
         </mxCell>
         <mxCell id="e_gm" edge="1" parent="1" source="GameMenu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;strokeColor=#8797A4;strokeWidth=1.5;" target="Game" value="управляет">
           <mxGeometry relative="1" as="geometry" />
@@ -31,16 +28,16 @@
         <mxCell id="e_gf" edge="1" parent="1" source="Game" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;startArrow=diamond;startFill=1;endArrow=none;strokeColor=#356F9B;strokeWidth=2;" target="GameField" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="770" y="250" />
-              <mxPoint x="770" y="250" />
+              <mxPoint x="810" y="250" />
+              <mxPoint x="810" y="250" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e_gb" edge="1" parent="1" source="Game" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;startArrow=diamond;startFill=1;endArrow=none;strokeColor=#356F9B;strokeWidth=2;" target="Base" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="595" y="80" />
-              <mxPoint x="1350" y="80" />
+              <mxPoint x="635" y="80" />
+              <mxPoint x="1390" y="80" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -48,27 +45,27 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="h2" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#23435E;" value="02  Персонажи и противники" vertex="1">
-          <mxGeometry height="35" width="400" x="40" y="565" as="geometry" />
+          <mxGeometry height="35" width="400" x="80" y="565" as="geometry" />
         </mxCell>
         <mxCell id="Unit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEDE5;strokeColor=#398564;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Unit&lt;/b&gt;&lt;hr&gt;name: str&lt;br&gt;health: int&lt;br&gt;armor: int&lt;br&gt;attack: int&lt;br&gt;x, y: int&lt;hr&gt;move()&lt;br&gt;take_damage()&lt;br&gt;attack_target()&lt;br&gt;use_ability()" vertex="1">
-          <mxGeometry height="225" width="260" x="700" y="635" as="geometry" />
+          <mxGeometry height="225" width="260" x="980" y="635" as="geometry" />
         </mxCell>
         <mxCell id="Fighter" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4ED;strokeColor=#4C9374;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Fighter(Unit)&lt;/b&gt;&lt;hr&gt;use_ability()&lt;br&gt;&lt;i&gt;усиленная атака&lt;/i&gt;" vertex="1">
-          <mxGeometry height="95" width="225" x="80" y="940" as="geometry" />
+          <mxGeometry height="95" width="225" x="360" y="940" as="geometry" />
         </mxCell>
         <mxCell id="Scout" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4ED;strokeColor=#4C9374;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Scout(Unit)&lt;/b&gt;&lt;hr&gt;use_ability()&lt;br&gt;&lt;i&gt;разведка&lt;/i&gt;" vertex="1">
-          <mxGeometry height="95" width="225" x="460" y="940" as="geometry" />
+          <mxGeometry height="95" width="225" x="740" y="940" as="geometry" />
         </mxCell>
         <mxCell id="Support" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4ED;strokeColor=#4C9374;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Support(Unit)&lt;/b&gt;&lt;hr&gt;&lt;i&gt;поддержка отряда&lt;/i&gt;" vertex="1">
-          <mxGeometry height="90" width="225" x="840" y="940" as="geometry" />
+          <mxGeometry height="90" width="225" x="1120" y="940" as="geometry" />
         </mxCell>
         <mxCell id="Enemy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FBE7E7;strokeColor=#B66666;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Enemy(Unit)&lt;/b&gt;&lt;hr&gt;&lt;i&gt;противник&lt;/i&gt;" vertex="1">
-          <mxGeometry height="90" width="225" x="1220" y="940" as="geometry" />
+          <mxGeometry height="90" width="225" x="1500" y="940" as="geometry" />
         </mxCell>
         <mxCell id="inh_Fighter" edge="1" parent="1" source="Fighter" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="Unit" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="192" y="740" />
+              <mxPoint x="472" y="740" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -81,30 +78,30 @@
         <mxCell id="inh_Enemy" edge="1" parent="1" source="Enemy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="Unit" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1332" y="740" />
+              <mxPoint x="1612" y="740" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Assault" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8F4;strokeColor=#65A387;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Assault&lt;/b&gt;&lt;hr&gt;Штурмовик&lt;br&gt;HP 120, урон 40" vertex="1">
-          <mxGeometry height="95" width="185" y="1120" as="geometry" />
+          <mxGeometry height="95" width="185" x="280" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="Sniper" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8F4;strokeColor=#65A387;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Sniper&lt;/b&gt;&lt;hr&gt;Снайпер&lt;br&gt;HP 80, урон 60" vertex="1">
-          <mxGeometry height="95" width="185" x="200" y="1120" as="geometry" />
+          <mxGeometry height="95" width="185" x="480" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="Tracker" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8F4;strokeColor=#65A387;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Tracker&lt;/b&gt;&lt;hr&gt;Разведчик&lt;br&gt;обзор 4, сканирование" vertex="1">
-          <mxGeometry height="95" width="185" x="400" y="1120" as="geometry" />
+          <mxGeometry height="95" width="185" x="680" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="Stalker" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8F4;strokeColor=#65A387;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Stalker&lt;/b&gt;&lt;hr&gt;Дозорный&lt;br&gt;обзор 4, радиация" vertex="1">
-          <mxGeometry height="95" width="185" x="600" y="1120" as="geometry" />
+          <mxGeometry height="95" width="185" x="880" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="Medic" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8F4;strokeColor=#65A387;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Medic&lt;/b&gt;&lt;hr&gt;Медик&lt;br&gt;heal()" vertex="1">
-          <mxGeometry height="95" width="185" x="800" y="1120" as="geometry" />
+          <mxGeometry height="95" width="185" x="1080" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="Engineer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8F4;strokeColor=#65A387;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Engineer&lt;/b&gt;&lt;hr&gt;Инженер&lt;br&gt;repair()" vertex="1">
-          <mxGeometry height="95" width="185" x="1000" y="1120" as="geometry" />
+          <mxGeometry height="95" width="185" x="1280" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="Zombie" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FBE7E7;strokeColor=#B66666;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Zombie&lt;/b&gt;&lt;hr&gt;HP 70, урон 15&lt;br&gt;find_target()&lt;br&gt;take_turn()" vertex="1">
-          <mxGeometry height="115" width="225" x="1220" y="1120" as="geometry" />
+          <mxGeometry height="115" width="225" x="1500" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="inh_Assault" edge="1" parent="1" source="Assault" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="Fighter" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -128,72 +125,72 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="h3" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#23435E;" value="03  Предметы и территория" vertex="1">
-          <mxGeometry height="35" width="400" x="40" y="1290" as="geometry" />
+          <mxGeometry height="35" width="400" x="80" y="1290" as="geometry" />
         </mxCell>
         <mxCell id="NeutralObject" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1DB;strokeColor=#C18E45;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;NeutralObject&lt;/b&gt;&lt;hr&gt;name, symbol&lt;br&gt;interact(unit)" vertex="1">
-          <mxGeometry height="105" width="250" x="160" y="1360" as="geometry" />
+          <mxGeometry height="105" width="250" x="440" y="1360" as="geometry" />
         </mxCell>
         <mxCell id="Territory" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2E9F8;strokeColor=#946AAD;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Territory&lt;/b&gt;&lt;hr&gt;name, symbol&lt;br&gt;on_enter(unit)&lt;br&gt;on_leave(unit)" vertex="1">
-          <mxGeometry height="110" width="250" x="1020" y="1360" as="geometry" />
+          <mxGeometry height="110" width="250" x="1300" y="1360" as="geometry" />
         </mxCell>
         <mxCell id="Medkit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8EB;strokeColor=#CCA46D;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Medkit&lt;/b&gt;" vertex="1">
-          <mxGeometry height="65" width="175" y="1535" as="geometry" />
+          <mxGeometry height="65" width="175" x="280" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="inh_Medkit" edge="1" parent="1" source="Medkit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="NeutralObject" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Supplies" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8EB;strokeColor=#CCA46D;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Supplies&lt;/b&gt;" vertex="1">
-          <mxGeometry height="65" width="175" x="205" y="1535" as="geometry" />
+          <mxGeometry height="65" width="175" x="485" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="inh_Supplies" edge="1" parent="1" source="Supplies" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="NeutralObject" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Trap" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8EB;strokeColor=#CCA46D;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Trap&lt;/b&gt;" vertex="1">
-          <mxGeometry height="65" width="175" x="410" y="1535" as="geometry" />
+          <mxGeometry height="65" width="175" x="690" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="inh_Trap" edge="1" parent="1" source="Trap" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="NeutralObject" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Armor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8EB;strokeColor=#CCA46D;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Armor&lt;/b&gt;" vertex="1">
-          <mxGeometry height="65" width="175" x="615" y="1535" as="geometry" />
+          <mxGeometry height="65" width="175" x="895" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="inh_Armor" edge="1" parent="1" source="Armor" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="NeutralObject" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="702" y="1410" />
+              <mxPoint x="982" y="1410" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Road" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F2FC;strokeColor=#AA84BF;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Road&lt;/b&gt;" vertex="1">
-          <mxGeometry height="65" width="175" x="900" y="1535" as="geometry" />
+          <mxGeometry height="65" width="175" x="1180" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="inh_Road" edge="1" parent="1" source="Road" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="Territory" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Forest" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F2FC;strokeColor=#AA84BF;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Forest&lt;/b&gt;" vertex="1">
-          <mxGeometry height="65" width="175" x="1100" y="1535" as="geometry" />
+          <mxGeometry height="65" width="175" x="1380" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="inh_Forest" edge="1" parent="1" source="Forest" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="Territory" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Radiation" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F2FC;strokeColor=#AA84BF;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Radiation&lt;/b&gt;" vertex="1">
-          <mxGeometry height="65" width="175" x="1300" y="1535" as="geometry" />
+          <mxGeometry height="65" width="175" x="1580" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="inh_Radiation" edge="1" parent="1" source="Radiation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=14;strokeColor=#5A7288;strokeWidth=1.8;fontSize=11;" target="Territory" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1388" y="1415" />
+              <mxPoint x="1668" y="1415" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7F9FB;strokeColor=#B8C5D0;fontColor=#172638;align=left;verticalAlign=top;spacingTop=10;spacingLeft=12;fontSize=13;shadow=0;" value="&lt;b&gt;Условные обозначения&lt;/b&gt;&lt;hr&gt;△ Наследование (пустой треугольник)&lt;br&gt;◆ Композиция (закрашенный ромб)&lt;br&gt;⇢ Зависимость (пунктир)" vertex="1">
-          <mxGeometry height="155" width="390" x="1530" y="145" as="geometry" />
+          <mxGeometry height="155" width="390" x="1570" y="145" as="geometry" />
         </mxCell>
         <mxCell id="ref_base_unit" edge="1" parent="1" source="Base" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;strokeColor=#8797A4;strokeWidth=1.5;" target="Unit" value="хранит отряд">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1350" y="390" />
-              <mxPoint x="830" y="390" />
+              <mxPoint x="1390" y="390" />
+              <mxPoint x="1110" y="390" />
             </Array>
           </mxGeometry>
         </mxCell>
