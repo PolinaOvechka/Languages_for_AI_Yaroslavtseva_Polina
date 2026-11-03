@@ -112,11 +112,19 @@ class GameField:
         if self.grid[new_y][new_x] is not None:
             print("Ошибка: новая клетка занята!")
             return False
+        
+        # Проверка перехода между лесными клетками
+        forest_to_forest = (
+            isinstance(self.territory[old_y][old_x], Forest)
+            and isinstance(self.territory[new_y][new_x], Forest)
+        )
 
         # удаление старого эффекта ландшафтра (эффекты ландшафта действуют только на выживших)
         if getattr(obj, "base", None) is not None:
             old_territory = self.territory[old_y][old_x]
-            old_territory.on_leave(obj)
+
+            if not forest_to_forest:
+                old_territory.on_leave(obj)
 
         # перемещение
         self.grid[new_y][new_x] = obj
@@ -129,7 +137,12 @@ class GameField:
         # применение эффекта нового ландшафта (эффекты ландшафта действуют только на выживших)
         if getattr(obj, "base", None) is not None:
             new_territory = self.territory[new_y][new_x]
-            new_territory.on_enter(obj)
+
+            if forest_to_forest:
+                print("Юнит переместился между лесными клетками.")
+                print("Бонус леса сохраняется: +10 временной брони.")
+            else:
+                new_territory.on_enter(obj)
 
         # подбор предмета (только для выживших)
         if getattr(obj, "base", None) is not None:

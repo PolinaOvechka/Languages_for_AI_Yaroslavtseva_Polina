@@ -31,13 +31,15 @@ class Forest(Territory):
         if not getattr(unit, "forest_bonus", False):
             unit.armor += 10
             unit.forest_bonus = True
-            GameText.event(f"{unit.name} получает +10 брони в лесу!", "success")
+            GameText.event(f"{unit.name} получает +10 временной брони в лесу!", "success")
 
     # Удаление бонуса при выходе
     def on_leave(self, unit):
         if getattr(unit, "forest_bonus", False):
             unit.armor -= 10
             unit.forest_bonus = False
+            GameText.event(
+                f"{unit.name} покидает лес. Бонус брони -10.", "warning")
 
 
 class Radiation(Territory):

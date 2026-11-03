@@ -27,6 +27,12 @@ class Unit:
         actual_damage = max(1, damage - self.armor // 5)
         self.health = max(0, self.health - actual_damage)
         return actual_damage
+    
+    @property
+    def damage_reduction(self):
+        'снижение урона за счёт брони'
+        return self.armor // 5
+
 
    
     def attack_target(self, target, bonus=0):
@@ -58,7 +64,10 @@ class Unit:
         ' Вывод характеристик юнита '
         print("Юнит:", self.name)
         print("Здоровье:", self.health, "/", self.max_health)
-        print("Броня:", self.armor)
+        print(
+            "Броня:", self.armor,
+            "| Снижение урона:", self.damage_reduction
+        )
         print("Атака:", self.attack)
         print("Координаты:", self.x, self.y)
 
