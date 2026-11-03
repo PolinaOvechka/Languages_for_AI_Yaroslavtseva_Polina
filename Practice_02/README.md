@@ -172,7 +172,3 @@
 | `start_game.bat` | Запуск игры в Windows |
 
 
-## Диаграмма классов
-![Диаграмма классов игры «Тени пустошей»](practice_02_class_diagram.drawio.png)
-
-[Открыть исходную диаграмму в draw.io](practice_02_class_diagram.drawio)
